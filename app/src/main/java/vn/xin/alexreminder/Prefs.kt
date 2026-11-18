@@ -46,6 +46,10 @@ object Prefs {
     fun customData(c: Context): String = sp(c).getString("customData", "") ?: ""
     fun setCustomData(c: Context, v: String) = sp(c).edit().putString("customData", v).apply()
 
+    /** Cờ yêu cầu màn hình chính vẽ lại sau khi màn hình chẩn đoán đổi cài đặt. */
+    fun needRefresh(c: Context): Boolean = sp(c).getBoolean("needRefresh", false)
+    fun setNeedRefresh(c: Context, v: Boolean) = sp(c).edit().putBoolean("needRefresh", v).apply()
+
     /** 0 = VOICE_ASSIST, 1 = ASSIST, 2 = mở app Gemini, 3 = intent tùy chỉnh. */
     fun method(c: Context): Int = sp(c).getInt("method", 0)
     fun setMethod(c: Context, v: Int) = sp(c).edit().putInt("method", v).apply()

@@ -201,6 +201,10 @@ class MainActivity : Activity() {
             }
         })
 
+        col.add(button("Chẩn đoán Gemini / Assistant (gửi báo cáo cho Claude)") {
+            startActivity(Intent(this@MainActivity, DiagActivity::class.java))
+        })
+
         // --- Tự mở / clipboard ---
         val swAuto = Switch(this).apply {
             text = "Thử tự mở Gemini từ nền (thử nghiệm)"
@@ -276,6 +280,11 @@ class MainActivity : Activity() {
 
     override fun onResume() {
         super.onResume()
+        if (Prefs.needRefresh(this)) {
+            Prefs.setNeedRefresh(this, false)
+            recreate()
+            return
+        }
         // Đặt lại alarm nếu app từng bị force-stop.
         if (Prefs.enabled(this)) Scheduler.schedule(this)
         refreshLabels()
