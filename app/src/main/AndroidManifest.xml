@@ -8,6 +8,18 @@
     <queries>
         <package android:name="com.google.android.apps.bard" />
         <package android:name="com.google.android.googlequicksearchbox" />
+        <intent>
+            <action android:name="android.intent.action.ASSIST" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VOICE_ASSIST" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VOICE_COMMAND" />
+        </intent>
+        <intent>
+            <action android:name="android.service.voice.VoiceInteractionService" />
+        </intent>
     </queries>
 
     <application
@@ -30,6 +42,10 @@
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:theme="@style/Theme.AlexReminder.Launch" />
+
+        <activity
+            android:name=".DiagActivity"
+            android:exported="false" />
 
         <receiver
             android:name=".AlarmReceiver"
